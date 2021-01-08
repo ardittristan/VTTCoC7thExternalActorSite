@@ -1,1 +1,0 @@
-Any fonts that don't have an url distribution method should be put here.

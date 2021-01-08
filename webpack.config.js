@@ -5,7 +5,6 @@ const path = require('path');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
 const FileManagerPlugin = require('filemanager-webpack-plugin');
 
 module.exports = {
@@ -50,12 +49,6 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin(),
-
-        new CopyPlugin({                // copies fonts folder if used
-            patterns: [
-                { from: path.resolve(__dirname, 'src', 'fonts'), to: path.resolve(__dirname, 'dist', 'fonts') }
-            ]
-        }),
 
         new FileManagerPlugin({         // moves fontawesome into libs folder in dist folder
             onEnd: [

@@ -12,19 +12,18 @@ const HtmlWebpackSkipAssetsPlugin = require('html-webpack-skip-assets-plugin').H
 
 module.exports = {
     entry: {
-        index_bundle: ['babel-polyfill',        // files included in main index.html file
+        index_bundle: ['babel-polyfill',
         './src/global.js',
-        './src/libs/onefile.js',
         './src/populatesheet.js',
         './src/index.js',
         ],
-        fontawesome: './src/libs/fontawesome.js'// seperate fontawesome file for use as cdn for site.
+        fontawesome: './src/libs/fontawesome.js'
     },
     performance: {
-        hints: false                            // disables warning about big file sizes
+        hints: false
     },
     optimization: {
-        minimize: true,                         // recommended to turn off while coding for easier debugging
+        minimize: true,
         minimizer: [
             new TerserJSPlugin({
                 test: /\.js(\?.*)?$/i,
@@ -45,11 +44,11 @@ module.exports = {
     },
     module: {
         rules: [
-            { test: /\.(js)$/, exclude: /node_modules/, use: ['babel-loader'] },                                            // allows usage of newer javascript functions that webpack does not support
-            { test: /\.handlebars$/, loader: "handlebars-loader?helperDirs[]=" + __dirname + "/src/handlebars/helpers" },   // allows handlebars usage
-            { test: /\.(otf|jpg)$/, use: { loader: 'url-loader' }},                                                         // allows reading from images/fonts, change extensions if different files needed
-            { test: /\.css$/i, use: ['style-loader', 'css-loader'] },                                                       // loads css
-            { test: /\.hbs$/, loader: "handlebars-loader"}                                                                  // same handlebars loader for the index file
+            { test: /\.(js)$/, exclude: /node_modules/, use: ['babel-loader'] },
+            { test: /\.handlebars$/, loader: "handlebars-loader?helperDirs[]=" + __dirname + "/src/handlebars/helpers" },
+            { test: /\.(otf|jpg)$/, use: { loader: 'url-loader' }},
+            { test: /\.css$/i, use: ['style-loader', 'css-loader'] },
+            { test: /\.hbs$/, loader: "handlebars-loader"}
         ]
     },
     resolve: {
@@ -58,15 +57,15 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin(),
 
-        new HtmlWebpackPlugin({                         // packs everything into one html file
+        new HtmlWebpackPlugin({
             inlineSource: '.(js|css)$',
-            excludeAssets: ['fontawesome.js'],        // what to exclude from the html file
-            title: "My Sheet",                          // title of the website
-            template: "./src/handlebars/index.hbs",     // template for output index.html
+            excludeAssets: ['fontawesome.js'],
+            title: "CoC7th Sheet",
+            template: "./src/handlebars/index.hbs",
             minify: {
                 collapseWhitespace: true,
                 removeComments: true,
-                removeRedundantAttributes: false,       // this would break some foundry styling when enabled (<input type="text"> css)
+                removeRedundantAttributes: false,
                 removeScriptTypeAttributes: false,
                 removeStyleLinkTypeAttributes: false,
                 useShortDoctype: true
@@ -77,7 +76,7 @@ module.exports = {
 
         new HtmlWebpackSkipAssetsPlugin(),
 
-        new FileManagerPlugin({                         // copies index.html to root folder for easier github pages management.
+        new FileManagerPlugin({
             onEnd: [
                 {
                     copy: [

@@ -63,3 +63,21 @@ form#siteUrlForm > button:hover {
   display: inline-block;
   width: calc(100% - 181px - 8px);
 }
+
+.window-content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  background: var(--parchment) repeat;
+  padding: 8px;
+  color: #191813;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.window-content input,
+.window-content label,
+.window-content select {
+  pointer-events: none !important;
+}
